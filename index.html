@@ -1,53 +1,61 @@
+
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
-  <title>memes soud</title>
+  <title>音效按鈕</title>
   <style>
     body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f5f5f5;
       font-family: Arial, sans-serif;
-      text-align: center;
-      margin-top: 50px;
+      gap: 20px;
     }
     button {
+      padding: 15px 30px;
       font-size: 18px;
-      padding: 10px 20px;
-      margin: 10px;
       border: none;
-      border-radius: 8px;
-      background-color: #4CAF50;
+      border-radius: 12px;
       color: white;
       cursor: pointer;
+      box-shadow: 2px 4px 10px rgba(0,0,0,0.2);
+      transition: 0.3s;
+      width: 220px;
     }
-    button:hover {
-      background-color: #45a049;
-    }
+    .red    { background-color: #e74c3c; }
+    .red:hover { background-color: #c0392b; }
+
+    .blue   { background-color: #3498db; }
+    .blue:hover { background-color: #2980b9; }
+
+    .yellow { background-color: #f1c40f; color: #333; }
+    .yellow:hover { background-color: #d4ac0d; }
+
+    .green  { background-color: #2ecc71; }
+    .green:hover { background-color: #27ae60; }
   </style>
 </head>
 <body>
-  <h1>🎵 音效按鈕網頁 🎵</h1>
+  <button class="red" onclick="playSound('answerme')">🎵 Answer Me</button>
+  <button class="blue" onclick="playSound('lookmyeyes')">👀 Look My Eyes</button>
+  <button class="yellow" onclick="playSound('tellmewhy')">❓ Tell Me Why</button>
+  <button class="green" onclick="playSound('YesIcan')">✅ Yes I Can</button>
 
-  <div>
-    <button onclick="playSound('https://github.com/shinrenz/soundmemes/blob/d8b1f04dcbbaf6b6832e3e8b5f1b302799545162/answerme.mp3')">回答我</button>
-  </div>
-  <div>
-    <button onclick="playSound('https://github.com/shinrenz/soundmemes/blob/d8b1f04dcbbaf6b6832e3e8b5f1b302799545162/lookmyeyes.mp3')">look my eyes</button>
-  </div>
-  <div>
-    <button onclick="playSound('https://github.com/shinrenz/soundmemes/blob/d8b1f04dcbbaf6b6832e3e8b5f1b302799545162/tellmewhy.mp3')">why baby why</button>
-  </div>
-    <button onclick="playSound('https://github.com/shinrenz/soundmemes/blob/d8b1f04dcbbaf6b6832e3e8b5f1b302799545162/YesIcan.mp3')">能能能</button>
-  </div>
- 
+  <!-- 音效檔 -->
+  <audio id="answerme" src="answerme.mp3"></audio>
+  <audio id="lookmyeyes" src="lookmyeyes.mp3"></audio>
+  <audio id="tellmewhy" src="tellmewhy.mp3"></audio>
+  <audio id="YesIcan" src="YesIcan.mp3"></audio>
+
   <script>
-    let currentAudio = null;
-
-    function playSound(url) {
-      if (currentAudio) {
-        currentAudio.pause();
-      }
-      currentAudio = new Audio(url);
-      currentAudio.play();
+    function playSound(id) {
+      const audio = document.getElementById(id);
+      audio.currentTime = 0; // 每次從頭播放
+      audio.play();
     }
   </script>
 </body>
